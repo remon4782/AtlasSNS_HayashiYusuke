@@ -6,6 +6,7 @@ use App\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Http\Request;
+use App\Http\Requests\RegisterFormRequest;
 
 class RegisterController extends Controller
 {
@@ -38,26 +39,36 @@ class RegisterController extends Controller
     {
         $this->middleware('guest');
     }
+//変更
+    public function registerView(){//バリデーション追加
+        return view('auth.register');
+    }
 
-    public function register(Request $request){
-        if($request->isMethod('post')){
+    public function registerPost(RegisterFormRequest $request){//バリデーションをしたい
 
             $username = $request->input('username');
             $mail = $request->input('mail');
             $password = $request->input('password');
+            //dd($username);
 
             User::create([
                 'username' => $username,
                 'mail' => $mail,
                 'password' => bcrypt($password),
             ]);
-
+            //ユーザー名表示
+            $request->session()->put('user',$username);
             return redirect('added');
-        }
-        return view('auth.register');
+
+        //return view('auth.register');//register.blade.phpを表示させる
     }
 
     public function added(){
         return view('auth.added');
     }
+        //public function register(RegisterFormRequest $request){
+        //$username = $this->create($data);
+        //$user = $request ->get('username');
+        //return redirect('added')->with('username',$user);
+        //}
 }

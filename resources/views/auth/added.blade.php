@@ -2,8 +2,8 @@
 
 @section('content')
 
-<div id="clear">
-  <p>〇〇さん</p>
+<div id="clear"><!--ユーザー名表示-->
+  <p>{{session('user')}}さん</p>
   <p>ようこそ！AtlasSNSへ！</p>
   <p>ユーザー登録が完了しました。</p>
   <p>早速ログインをしてみましょう。</p>
