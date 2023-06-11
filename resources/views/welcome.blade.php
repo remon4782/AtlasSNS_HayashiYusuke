@@ -79,7 +79,7 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    Laravel
+                <a href="{{url('/tech')}}">Laravel</a><!--トップページへ遷移するリンクを設置する-->
                 </div>
 
                 <div class="links">

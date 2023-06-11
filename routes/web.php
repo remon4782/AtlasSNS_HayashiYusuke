@@ -11,9 +11,10 @@
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
+Route::get('/test-redirect', function () {//トップページへ遷移するリンクを設置する
+    // redirect関数にパスを指定する方法
+    return redirect('/');
+});
 // Route::get('/home', 'HomeController@index')->name('home');
 
 //Auth::routes();
@@ -41,3 +42,6 @@ Route::get('/search_result','UsersController@index');
 
 Route::get('/follow-list','PostsController@index');
 Route::get('/follower-list','PostsController@index');
+
+//ログアウト機能
+Route::logout('/logout','Auth\LoginController@logout');
