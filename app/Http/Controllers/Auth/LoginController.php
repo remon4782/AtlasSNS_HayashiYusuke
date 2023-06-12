@@ -51,4 +51,8 @@ class LoginController extends Controller
         }
         return view("auth.login");
     }
+    public function Logout(Request $request){
+        Auth::logout();
+        return redirect()->route('logout');
+    }
 }

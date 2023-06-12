@@ -50,14 +50,14 @@
                 <p>{{session('user')}}さんの</p>
                 <div>
                 <p>フォロー数</p>
-                <p>〇〇名</p>
+                <p>名</p>
                 </div>
                 <p class="btn"><a href="/follow-list">フォローリスト</a></p>
                 <div>
                 <p>フォロワー数</p>
-                <p>〇〇名</p>
+                <p>名</p>
                 </div>
-                <p class="btn"><a href="/follower-kist">フォロワーリスト</a></p>
+                <p class="btn"><a href="/follower-list">フォロワーリスト</a></p>
             </div>
             <p class="pull-right"><a class="but but-success" href="/search">ユーザー検索</a></p>
         </div>

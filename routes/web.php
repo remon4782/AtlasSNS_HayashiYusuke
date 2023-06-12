@@ -44,4 +44,4 @@ Route::get('/follow-list','PostsController@index');
 Route::get('/follower-list','PostsController@index');
 
 //ログアウト機能
-Route::logout('/logout','Auth\LoginController@logout');
+Route::get('/logout','Auth\LoginController@logout');
