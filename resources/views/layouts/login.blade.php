@@ -24,7 +24,7 @@
         <h1><a href = "/top"><img src="images/atlas.png"></a></h1>
             <div id="/top">
                 <div id="icon">
-                    <p class="accordion-title js-accordion-title">{{session('user')}}さん<img src="images/icon1.png"></p>
+                    <p class="accordion-title js-accordion-title">{{Auth::user()->username}}さん<img src="images/icon1.png"></p>
                 <div>
             <!--アコーディオンメニュー-->
             <button type="button" class="menu-btn">
@@ -47,7 +47,7 @@
         </div >
         <div id="side-bar">
             <div id="confirm">
-                <p>{{session('user')}}さんの</p>
+                <p>{{Auth::user()->username}}さんの</p>
                 <div>
                 <p>フォロー数</p>
                 <p>名</p>
@@ -64,7 +64,7 @@
     </div>
     <footer>
     </footer>
-    <script src="{{ asset('js/app.js') }}"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0min.js"></script>
     <script src="{{ asset('js/script.js') }}"></script>
 </body>
 </html>

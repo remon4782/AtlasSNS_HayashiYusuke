@@ -40,8 +40,27 @@ Route::get('/profile','UsersController@profile');
 Route::get('/search','UsersController@index');
 Route::get('/search_result','UsersController@index');
 
-Route::get('/follow-list','PostsController@index');
-Route::get('/follower-list','PostsController@index');
+//フォロワー、フォローリスト表示
+Route::get('/follow-list','FollowsController@follow');
+Route::get('/follower-list','UserController@follower');
+
+//フォロー機能ボタン
+//フォローボタン
+Route::get('/user/{id}/follow','FollowsController@follow');
+//フォロー解除機能
+Route::get('/user/{id}/nufollow','FollowsController@nufollow');
+
+//ユーザー検索
+Route::post('/search','UsersController@searchUser');
 
 //ログアウト機能
 Route::get('/logout','Auth\LoginController@logout');
+
+//投稿の表示
+Route::get('/post','PostController@create')->name('post.create');
+//投稿押した時
+Route::post('/post','PostController@store')->name('post.store');
+//投稿削除
+Route::get('/post/{id}/delete', 'PostsController@deletePost');
+//投稿更新
+Route::post('/post/{id}/update', 'PostsController@updatePost');
