@@ -27,37 +27,42 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
-        //ユーザーがフォローしている人数の取得（フォロー）
-public function follows()//belongsToManyは多対多を使用
-{
-    return $this->belongsToMany(User::class,'follows','following_id','followed_id')->whileTimestamps();
-}
-        //ユーザーをフォローしている人数取得（フォロワー）
-public function followers()
-{
-    return $this->belongsToMany(User::class,'followers','following_id','followed_id')->whileTimestamps();
-}
+    public function post(){
+        return $this->hasMany('App\Post');
+    }
+
+    //ユーザーがフォローしている人数の取得（フォロー）
+    public function follows()//belongsToManyは多対多を使用
+    {
+        return $this->belongsToMany(User::class,'follows','following_id','followed_id')->whileTimestamps();
+    }
+    //ユーザーをフォローしている人数取得（フォロワー）
+    public function followers(){
+        return $this->belongsToMany(User::class,'followers','following_id','followed_id')->whileTimestamps();
+    }
 
     //フォローの人数取得
-public function isFollowing($user_id){
-    return (boolean) $this->follows()->where('followed_id', $user_id)->first();
-}
+    public function isFollowing($user_id){
+        return (boolean) $this->follows()->where('followed_id', $user_id)->first();
+    }
 
 //フォロワーの人数取得
-public function isFollowed($user_id){
-    return (boolean) $this->followers()->where('following_id', $user_id)->first(['follows.id']);
-}
+    public function isFollowed($user_id){
+        return (boolean) $this->followers()->where('following_id', $user_id)->first(['follows.id']);
+    }
 
 //フォロー解除
-public function unfollows(Int $user_id){
-    return $this->follows()->detach($user_id);
-}
+    public function unfollows(Int $user_id){
+        return $this->follows()->detach($user_id);
+    }
 
 //フォロー
-public function follow(Int $user_id){
-    return $this->follows()->attach($user_id);
+    public function follow(Int $user_id){
+        return $this->follows()->attach($user_id);
+    }
+
 }
-}
+
 
 //public function follow_each() { //ユーザがフォロー中のユーザを取得
      //$userIds = $this->followings()->pluck('users.id')->toArray();

@@ -16,6 +16,17 @@ class FollowsController extends Controller
         //$user_id = Auth::user()->id;
     //}
 
+    //フォロー
+    public function follow(Post $post, Follow $follow)
+    {
+        $user = auth()->user();
+        $follow_ids = $follow->followingIds($user->id);
+        $following_ids = $follow_ids->pluck('followed_id')->toArray();
+        $timelines = $post->getTimelines($user->id, $following_ids);
+        return view('follows.followList',['timelines' => $timelines]);
+    }
+
+    //フォロワー
     public function followList(Post $post, Follow $follow)
     {
         $user = auth()->user();
@@ -33,23 +44,23 @@ class FollowsController extends Controller
     //}
 
     //フォロー機能
-    public function follow(User $user){
-        $follower = Auth::user();
-        $is_following =$follower->isFollowing($user->id);//// フォローしているか
-        if($is_following) {// フォローしていなければフォローする
-            $follower ->follow($user->id);
-            return back();
-        }
-    }
+    ///public function follow(User $user){
+        ///$follower = Auth::user();
+        ///$is_following =$follower->isFollowing($user->id);//// フォローしているか
+        ///if($is_following) {// フォローしていなければフォローする
+           /// $follower ->follow($user->id);
+            ///return back();
+        ///}///
+   /// }
     //フォロー解除機能
-    public function nufollow(User $user){
-        $follower = Auth::user();
-        $is_following = $follower->isFollowing($user->id);// フォローしているか
-        if($is_following) {// フォローしていればフォローを解除する
-            $follower ->nofollow($user->id);
-            return back();
-        }
-    }
+    ///public function nufollow(User $user){
+        ///$follower = Auth::user();
+        ///$is_following = $follower->isFollowing($user->id);// フォローしているか
+        ///if($is_following) {// フォローしていればフォローを解除する
+           /// ///$follower ->nofollow($user->id);
+            ///return back();
+        ///}
+    //}
 
     //public function show(User $user){
         //$login_user = auth()->user();

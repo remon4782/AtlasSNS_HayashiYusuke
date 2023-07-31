@@ -41,7 +41,7 @@ class LoginController extends Controller
         $this->middleware('guest')->except('logout');
     }
 
-    public function login(Request $request){//フォームで送られたものを受け取るリクエスト
+    public function login(Request $request){//フォームで送られたものを受け取るリクエスト。メゾット関数が()の前についている関数になる。
         if($request->isMethod('post')){
 
             $data=$request->only('mail','password');

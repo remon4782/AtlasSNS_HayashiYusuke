@@ -17,4 +17,8 @@ class Post extends Model
         $follow_ids[] = $user_id;
         return $this->whereIn('user_id', $follow_ids)->orderBy('created_at', 'DESC')->paginate();
     }
+
+    public function User(){
+        return $this->belongsTo('App\User');
+    }
 }

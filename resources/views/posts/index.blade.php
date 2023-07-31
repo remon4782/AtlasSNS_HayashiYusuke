@@ -8,7 +8,7 @@
   <div class="form-group">
     {!! Form::input('text','newPost',null,['required','class'=> 'form-control','placeholder' => '投稿内容を入力してください。']) !!}
   </div>
-  <button type = "submit" class =  "btn-success pull-right">追加</button>
+  <button type = "submit" class =  "btn-success pull-right">投稿</button>
   {!! Form::close()!!}
 </div>
 
