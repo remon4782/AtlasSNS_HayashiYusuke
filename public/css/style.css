@@ -63,3 +63,73 @@ header {
     display: none;
 
 }
+
+/*投稿ボタン*/
+.Trash {
+    height: 25px;
+    top: 10px;
+}
+
+/*投稿表示*/
+li {
+    list-style: none;
+    border: bottom 1px solid #000;
+    display: flex;
+}
+
+.post-content {
+    width: 90%;
+    padding: 15px;
+}
+
+.post-content>div {
+    display: flex;
+    justify-content: space-between;
+}
+
+.post-name {
+    margin-bottom: 10px;
+}
+
+/*投稿編集*/
+.content {
+    margin: 0 auto;
+    padding: 40px;
+}
+
+.modal {
+    display: none;
+    height: 100yh;
+    position: fixed;
+    top: 0;
+    width: 100%;
+}
+
+.modal_bg {
+    background: rgba(0, 0, 0, 0.8);
+    height: 100vh;
+    position: absolute;
+    width: 100%;
+}
+
+.modal_content {
+    background: #fff;
+    left: 50%;
+    padding: 40px;
+    position: absolute;
+    top: 50%;
+    transform: translateX(-50%), translateY(-50%);
+    width: 60%;
+}
+
+/*更新ボタン*/
+.Update {
+    height: 25px;
+    top: 10px;
+}
+
+/*削除ボタン*/
+.Trash {
+    height: 25px;
+    top: 10px;
+}

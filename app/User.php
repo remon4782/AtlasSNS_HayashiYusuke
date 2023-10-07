@@ -27,6 +27,7 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
+    //post_tableとのリレーション
     public function post(){
         return $this->hasMany('App\Post');
     }

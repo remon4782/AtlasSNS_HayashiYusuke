@@ -1,17 +1,34 @@
 @extends('layouts.login')
 
 @section('content')
-<form method="GET" action="{{ route('users.index') }}">
-    <input type="search" placeholder="ユーザー名" name="search" value="@if (isset($search)) {{ $search }} @endif">
-    <div>
-        <button type="submit">検索</button>
-        <button>
-            <a href="{{ route('users.index') }}" class="text-white">
-                クリア
-            </a>
-        </button>
-    </div>
-</form>
+<div class = "search-form">
+    <form action="/search" method = "post">
+        @csrf
+        <input type="search" name="keyword" class="form-control" placeholder="ユーザー名" value="@if(isset($keyword)){{$keyword}}@endif">
+        <button type="submit" class=""><img src="./images/search.png"></button>
+    </form>
+</div>
 
-
+<!--検索ワードを表示-->
+@if(!empty($keyword))
+<p>検索ワード:{{$keyword}}</p>
+@endif
+<!--ユーザーを一覧-->
+<div class="container-list">
+    <table class="table table-hover">
+        @foreach($users as $users)
+        @if(!($user->username))
+        <tr>
+            <td>{{$user->username}}</td>
+            <td><img src="{{$user->images}}" alt="ユーザーアイコン"></td>
+        </tr>
+    @elseif(isset($user)and!(Auth::user()==$user))
+    <tr>
+        <td><img src="{{$date->appends(Request;;only('keyword'))->images}}" alt="ユーザーアイコン"></td>
+        <td>{{$date->appends(Request::only('keyword'))}}</td>
+    </tr>
+    @endif
+    @endforeach
+    </table>
+</div>
 @endsection

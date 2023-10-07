@@ -13,7 +13,21 @@ class UsersController extends Controller
         return view('users.profile');
     }
     public function search(){
-        return view('users.search');
+        $users=User::paginate(20);
+        return view('users.search')->with('users',$users);
+    }
+
+    //ユーザー検索の処理をする
+    public function searchView(Request $request){
+        $users=User::paginate(20);
+        $keyword=$request->input('keyword');
+        $query=User::query();
+        if(!empty($keyword)){
+            $query->orwhere('username','like','%',$keyword,'%')->get();
+        }
+        //前県取得+ページネーション
+        $date=$query->orderBy('created','desc')->paginate(5);
+        return view('users.search')->with('data',$date)->with('keyword',$keyword);
     }
 
     //ユーザー検索ページへ遷移するリンク

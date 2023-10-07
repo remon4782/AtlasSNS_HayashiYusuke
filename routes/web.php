@@ -59,9 +59,11 @@ Route::get('/search','UsersController@search');
 //ログアウト機能
 Route::get('/logout','Auth\LoginController@logout');
 
-//投稿の表示
+//投稿する
 Route::post('/post/create','PostsController@create')->name('post.create');
-//投稿削除
-Route::get('/post/{id}/delete', 'PostsController@deletePost');
+//投稿を表示
+Route::get('/post/create','PostsController@index');
 //投稿更新
-Route::post('/post/{id}/update', 'PostsController@updatePost');
+Route::post('/post/update', 'PostsController@update');
+//投稿削除
+Route::get('/post/{id}/delete', 'PostsController@delete');
