@@ -35,11 +35,11 @@ class User extends Authenticatable
     //ユーザーがフォローしている人数の取得（フォロー）
     public function follows()//belongsToManyは多対多を使用
     {
-        return $this->belongsToMany(User::class,'follows','following_id','followed_id')->whileTimestamps();
+        return $this->belongsToMany(User::class,'follows','following_id','followed_id');
     }
     //ユーザーをフォローしている人数取得（フォロワー）
     public function followers(){
-        return $this->belongsToMany(User::class,'followers','following_id','followed_id')->whileTimestamps();
+        return $this->belongsToMany(User::class,'followers','following_id','followed_id');
     }
 
     //フォローの人数取得

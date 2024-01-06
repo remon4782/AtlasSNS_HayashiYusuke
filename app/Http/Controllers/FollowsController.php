@@ -12,28 +12,39 @@ use App\Follow;
 class FollowsController extends Controller
 {
     //
-    //public function follow(Request $request){
-        //$user_id = Auth::user()->id;
-    //}
-
-    //フォロー
-    public function follow(Post $post, Follow $follow)
-    {
-        $user = auth()->user();
-        $follow_ids = $follow->followingIds($user->id);
-        $following_ids = $follow_ids->pluck('followed_id')->toArray();
-        $timelines = $post->getTimelines($user->id, $following_ids);
-        return view('follows.followList',['timelines' => $timelines]);
+    public function followList(){
+        return view('follows.followList');
+    }
+    public function followerList(){
+        return view('follows.followList');
     }
 
-    //フォロワー
-    public function followList(Post $post, Follow $follow)
+    //フ
+    public function follow(User $user)
     {
-        $user = auth()->user();
-        $follow_ids = $follow->followingIds($user->id);
-        $following_ids = $follow_ids->pluck('followed_id')->toArray();
-        $timelines = $post->getTimelines($user->id, $following_ids);
-        return view('follows.followList',['timelines' => $timelines]);
+        $follow = auth()->user();
+        //フォローしているか
+        $is_following = $follower->inFollowing($user->id);
+        if($is_following)
+        {
+            //フォローしていなければフォローする
+            $follower->follow($user->id);
+            return back();
+        }
+    }
+
+    //フォロー解除
+    public function unfollow(User $user)
+    {
+        $follower = auth()->user();
+        //フォローしているか
+        $is_following = $follower->isFollowing($user->id);
+        if($is_following)
+        {
+            //フォローしていれば解除
+            $follower->unfollow($user->id);
+            return back();
+        }
     }
 
     //public function followList(){//フォローリスト

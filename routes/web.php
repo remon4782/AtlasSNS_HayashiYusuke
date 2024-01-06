@@ -49,7 +49,7 @@ Route::get('/follower-list', 'FollowsController@followList');
 
 //フォロー機能ボタン
 //フォローボタン
-Route::get('/user/{id}/follow','FollowsController@follow');
+Route::get('/user/{id}/follow','FollowsController@follow')->name('follow');
 //フォロー解除機能
 Route::get('/user/{id}/nufollow','FollowsController@nufollow');
 
@@ -67,3 +67,6 @@ Route::get('/post/create','PostsController@index');
 Route::post('/post/update', 'PostsController@update');
 //投稿削除
 Route::get('/post/{id}/delete', 'PostsController@delete');
+//ユーザー検索
+Route::get('/search', 'UsersController@search')->name('search');
+Route::post('/search', 'UsersController@search');

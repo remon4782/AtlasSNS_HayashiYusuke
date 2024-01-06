@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\User;
+use App\User;
 
 class UsersController extends Controller
 {
@@ -12,23 +12,40 @@ class UsersController extends Controller
     public function profile(){
         return view('users.profile');
     }
-    public function search(){
-        $users=User::paginate(20);
-        return view('users.search')->with('users',$users);
-    }
+
+    //public function search(){
+        //$users=User::paginate(20);
+        //return view('users.search')->with('users',$users);
+    //}
 
     //ユーザー検索の処理をする
-    public function searchView(Request $request){
-        $users=User::paginate(20);
-        $keyword=$request->input('keyword');
-        $query=User::query();
-        if(!empty($keyword)){
-            $query->orwhere('username','like','%',$keyword,'%')->get();
-        }
-        //前県取得+ページネーション
-        $date=$query->orderBy('created','desc')->paginate(5);
-        return view('users.search')->with('data',$date)->with('keyword',$keyword);
+    //public function searchView(Request $request){
+        //$users=User::paginate(20);
+        //$keyword=$request->input('keyword');
+       // $query=User::query();
+        //if(!empty($keyword)){
+            //$query->orwhere('username','like','%',$keyword,'%')->get();
+        //}
+        //}
+
+        //ユーザー検索の処理をする
+    public function search(Request $request){
+        $users = User::get();
+        //$searchWord = $request ->input('searchWord');
+        //return view('users.search',['searchWord',['searchWord'=>$searchWord,'users'=>$users]]);
+
+
+        //$keyword = $request->input('keyword');
+        //$query = Post::query();
+        //if(!empty(keyword)){
+            //$query->where('username','LIKE',"%{$keyword}%");
+        //}
     }
+
+        //前県取得+ページネーション
+        //$date=$query->orderBy('created','desc')->paginate(5);
+        //return view('users.search')->with('data',$date)->with//('keyword',$keyword);
+   // }
 
     //ユーザー検索ページへ遷移するリンク
     public function index() {
