@@ -2,9 +2,9 @@
 
 @section('content')
 
-{!! Form::open(['url'=>'users.search','class'=>'post-form'])!!}
+{!! Form::open(['url'=>'/search','class'=>'post-form'])!!}
 {{Form::input('text','searchword',null,['required','class'=>'search','placeholder'=>'ユーザー名'])}}
-<button type="submit"><img src="images/post.png" width="100" height="100"></button>
+<button type="submit"><img src="images/search.png" width="100" height="100"></button>
 @if(!empty($searchword))
 <div class="search-word">
     検索ワード:{{$searchword}}
@@ -12,7 +12,7 @@
 @endif
 {!!Form::close()!!}
 
-@foreach($users as $user)
+<!--保存されているユーザーの一覧-->
 <div>
     <tr>
         <td>
@@ -34,14 +34,28 @@
         </td>
     </tr>
 </div>
-@endforeach
 
 <!--検索ワードを表示-->
 @if(!empty($keyword))
 <p>検索ワード:{{$keyword}}</p>
 @endif
-{!! Form::close() !!}
+@foreach($users as $user)
 
-<!--ユーザーを一覧-->
+<!--保存されているレコードを一覧表示-->
+<div class="container-list">
+    <table class='table table-hover'>
+        @foreach ($users as $users)
+        <!--自分以外のユーザーを表示-->
+@if(!($user->username==$user->username))
+<tr>
+    <td>(($user->username))</td>
+    <td><img src="{{$user->images}}" alt="ユーザーアイコン"></td>
+</tr>
+@endif
+@endforeach
+    </table>
+
+</div>
+
 
 @endsection
